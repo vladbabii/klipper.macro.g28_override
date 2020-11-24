@@ -13,6 +13,20 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 [respond]
 ```
 
+## Configuration
+Add this to your configuration file
+```
+[gcode_macro HOMING_OVERRIDE_CONFIG]
+variable_order: "x,y,z"
+variable_dowith_x: "y"
+variable_dowith_y: "x"
+variable_dowith_z: "x,y"
+variable_start_zhop: 20
+gcode:
+  RESPOND PREFIX="info" MSG="Homing config..."
+```
+Read below for description of settings
+
 ## Features
 
 ### Keep track of actual homing status and can allow homing of each axis only when needed
@@ -20,3 +34,33 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 When zero value is specified axis will not be homed if already "real" homed
   G28 X0 - will home only if needed
   G28 X - will always home X, regardless of status
+
+### Home Ordering
+By editing adding the following configuration in your printer config file you can change the default homing order
+```
+[gcode_macro HOMING_OVERRIDE_CONFIG]
+variable_order: "x,y,z"
+gcode:
+  RESPOND PREFIX="info" MSG="Homing config"
+```
+Just edit the "x,y,z" and put any order you want in it. 
+Make sure all axis you want to home are set there, since if you skip one it will not be homed. 
+Use lowercase letters for all axies.
+
+### Homing Dependencies
+Sometimes homing an axis requires another one to be also homed, for example you want to home Y before X every time. In this case G28 X should home Y then X. This is resolved by setting homing order (see above) to "y,x,z" then set Y as a dependency of x by adding this to your config file
+```
+[gcode_macro HOMING_OVERRIDE_CONFIG]
+variable_dowith_x: "y"
+gcode:
+  RESPOND PREFIX="info" MSG="Homing config"
+```
+
+## Homing Z-hop start
+If you want to start homing by lifting the printhead (relative to bed), you can use this setting 
+```
+[gcode_macro HOMING_OVERRIDE_CONFIG]
+variable_start_zhop: 20
+gcode:
+  RESPOND PREFIX="info" MSG="Homing config"
+```
