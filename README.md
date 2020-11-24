@@ -12,6 +12,7 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 ```
 [respond]
 ```
+4. configure homing as described below
 
 ## Configuration
 Add this to your configuration file
