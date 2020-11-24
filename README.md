@@ -64,3 +64,37 @@ variable_start_zhop: 20
 gcode:
   RESPOND PREFIX="info" MSG="Homing config"
 ```
+
+## Overriding individual axis homing
+For each axis you can create a macro named "HOMING_OVERRIDE_<axis_name>" like below. Each gcode must contain *G990028 X0* gcode command - replace X with the axis you're overriding
+```
+[gcode_macro HOMING_OVERRIDE_X]
+gcode:
+  RESPOND PREFIX="info" MSG="Homing > X"
+  G90
+  G990028 X0
+  G91
+  G0 X5 F2000
+  G90
+  
+[gcode_macro HOMING_OVERRIDE_Y]
+gcode:
+  RESPOND PREFIX="info" MSG="Home > Y"
+  G90
+  G990028 Y0
+  G91
+  G0 Y-5 F2000
+  G90
+  
+[gcode_macro HOMING_OVERRIDE_Z]
+gcode:
+  RESPOND PREFIX="info" MSG="Homing > Z"
+  G90
+  G0 X100 Y100
+  G990028 Z0
+  G91
+  G0 Z20
+  G90
+```
+You can override only the axis you need.
+
