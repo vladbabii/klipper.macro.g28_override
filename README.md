@@ -1,4 +1,4 @@
-# Homing (G28) override for Klipper
+# Homing (G28) override for Klipper [v.2]
 
 This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing process to make a better customisation and
 
