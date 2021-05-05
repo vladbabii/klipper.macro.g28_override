@@ -17,7 +17,7 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 ## Configuration
 You need to add some configuration for these macros to be useful,  for example this one hax X as dependency of y and x and y as dependency of z, and the order of homing is y then x then y
 ```
-[gcode_macro HOMING_OVERRIDE_CONFIG]
+[gcode_macro HOMING_CONFIG]
 variable_order: "y,x,z"
 variable_dowith_x: "y"
 variable_dowith_y: "x"
