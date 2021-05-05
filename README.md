@@ -99,3 +99,15 @@ gcode:
 ```
 You can override only the axis you need.
 
+## Overriding initial Z hop
+```
+[gcode_macro HOMING_OVERRIDE_ZHOP]
+gcode:
+  RESPOND PREFIX="info" MSG="Homing > Z Hop"
+  SET_KINEMATIC_POSITION Z=0
+  G91
+  G0 Z{printer['gcode_macro HOMING_CONFIG'].start_zhop|int}
+  G90
+```
+
+
