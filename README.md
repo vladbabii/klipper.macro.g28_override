@@ -27,7 +27,7 @@ gcode:
 
 [gcode_macro HOMING_OVERRIDE_BEFORE]
 gcode:
-    RESPOND PREFIX="info" MSG="Homing > Before homing: {param.X} - {param.Y} - {param.Z}"
+    RESPOND PREFIX="info" MSG="Homing > Before homing: {params.X} - {params.Y} - {params.Z}"
 
 [gcode_macro HOMING_OVERRIDE_X]
 gcode:
@@ -60,7 +60,7 @@ gcode:
 
 [gcode_macro HOMING_OVERRIDE_AFTER]
 gcode:
-    RESPOND PREFIX="info" MSG="Homing > After homing: {param.X} - {param.Y} - {param.Z}"
+    RESPOND PREFIX="info" MSG="Homing > After homing: {params.X} - {params.Y} - {params.Z}"
 ```
 
 ## Configuration
