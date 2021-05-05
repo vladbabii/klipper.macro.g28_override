@@ -16,7 +16,7 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 
 # Example File
 ```
-[include macro_g28.override.cfg]
+[include macro_g28.cfg]
 
 [gcode_macro HOMING_CONFIG]
 variable_order: "x,y,z"
@@ -25,7 +25,7 @@ variable_start_zhop: 20
 gcode:
   RESPOND PREFIX="info" MSG="Homing config..."
 
-[gcode_macro HOMING_BEFORE]
+[gcode_macro HOMING_OVERRIDE_BEFORE]
 gcode:
     RESPOND PREFIX="info" MSG="Homing > Before homing: {param.X} - {param.Y} - {param.Z}"
 
@@ -35,7 +35,7 @@ gcode:
     G90
     G990028 X0
     G91
-    G0 X5 F2000
+    G0 X-5 F2000
     G90
 
   
@@ -45,20 +45,20 @@ gcode:
     G90
     G990028 Y0
     G91
-    G0 Y5 F2000
+    G0 Y-5 F2000
     G90
 
 [gcode_macro HOMING_OVERRIDE_Z]
 gcode:
     RESPOND PREFIX="info" MSG="Homing > Z"
     G90
-    G0 X110 Y110
+    G0 X220 Y220
     G990028 Z0
     G91
     G0 Z30
     G90
 
-[gcode_macro HOMING_BEFORE]
+[gcode_macro HOMING_OVERRIDE_AFTER]
 gcode:
     RESPOND PREFIX="info" MSG="Homing > After homing: {param.X} - {param.Y} - {param.Z}"
 ```
