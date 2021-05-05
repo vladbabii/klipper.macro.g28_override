@@ -15,12 +15,14 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 4. configure homing as described below
 
 ## Configuration
-You need to add some configuration for these macros to be useful,  for example this one hax X as dependency of y and x and y as dependency of z, and the order of homing is y then x then y
+You need to add some configuration for these macros to be useful
+For example the configuration below has
+* order of homing: X then Y then Z
+* X and Y can be homed independently
+* Z requires both X and Y to be homed (and because of order settings, if you home only Z then X Y and Z will be homed in this specific order)
 ```
 [gcode_macro HOMING_CONFIG]
 variable_order: "y,x,z"
-variable_dowith_x: "y"
-variable_dowith_y: "x"
 variable_dowith_z: "x,y"
 variable_start_zhop: 20
 gcode:
@@ -56,6 +58,7 @@ variable_dowith_x: "y"
 gcode:
   RESPOND PREFIX="info" MSG="Homing config"
 ```
+If you don't want/need a dependency for an axis, just comment or remove that line
 
 ## Homing Z-hop start
 If you want to start homing by lifting the printhead (relative to bed), you can use this setting 
