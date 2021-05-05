@@ -111,3 +111,17 @@ gcode:
 ```
 
 
+## Run gcode before and after homing
+These macros are called with paremeters X=1 Y=1 Z=1 where value is 1 for the axis that will be/were homed 
+```
+[gcode_macro HOMING_OVERRIDE_BEFORE]
+gcode:
+  RESPOND PREFIX="info" MSG="Homing > Before G-code"
+  
+
+[gcode_macro HOMING_OVERRIDE_AFTER]
+gcode:
+  RESPOND PREFIX="info" MSG="Homing > After G-code"
+```
+
+
