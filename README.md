@@ -1,4 +1,4 @@
-# Homing (G28) override for Klipper [v.2]
+# Homing (G28) override for Klipper [v.3]
 
 This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing process to make a better customisation and
 
@@ -13,6 +13,55 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 [respond]
 ```
 4. configure homing as described below
+
+# Example File
+```
+[include macro_g28.override.cfg]
+
+[gcode_macro HOMING_CONFIG]
+variable_order: "x,y,z"
+variable_dowith_z: "x,y"
+variable_start_zhop: 20
+gcode:
+  RESPOND PREFIX="info" MSG="Homing config..."
+
+[gcode_macro HOMING_BEFORE]
+gcode:
+    RESPOND PREFIX="info" MSG="Homing > Before homing: {param.X} - {param.Y} - {param.Z}"
+
+[gcode_macro HOMING_OVERRIDE_X]
+gcode:
+    RESPOND PREFIX="info" MSG="Homing > X"
+    G90
+    G990028 X0
+    G91
+    G0 X5 F2000
+    G90
+
+  
+[gcode_macro HOMING_OVERRIDE_Y]
+gcode:
+    RESPOND PREFIX="info" MSG="Home > Y"
+    G90
+    G990028 Y0
+    G91
+    G0 Y5 F2000
+    G90
+
+[gcode_macro HOMING_OVERRIDE_Z]
+gcode:
+    RESPOND PREFIX="info" MSG="Homing > Z"
+    G90
+    G0 X110 Y110
+    G990028 Z0
+    G91
+    G0 Z30
+    G90
+
+[gcode_macro HOMING_BEFORE]
+gcode:
+    RESPOND PREFIX="info" MSG="Homing > After homing: {param.X} - {param.Y} - {param.Z}"
+```
 
 ## Configuration
 You need to add some configuration for these macros to be useful
