@@ -2,6 +2,13 @@
 
 This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing process to make a better customisation and
 
+## Dependencies
+Requires having this somewhere in your printer configuration for SET_KINEMATIC_POSITION to work
+```
+[force_move]
+enable_force_move: true
+```
+
 ## How to install 
 1. download file through any method (file download, git clone, etc) to the computer running klipper 
 2. add to configuration ( https://github.com/KevinOConnor/klipper/blob/master/docs/Config_Reference.md#include )
@@ -11,6 +18,11 @@ This macro overrides klipper ( https://github.com/KevinOConnor/klipper ) homing 
 3. also add to configuration if respond is not already configured ( https://github.com/KevinOConnor/klipper/blob/master/docs/Config_Reference.md#respond )
 ```
 [respond]
+```
+and
+```
+[force_move]
+enable_force_move: true
 ```
 4. configure homing as described below
 
